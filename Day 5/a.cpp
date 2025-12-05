@@ -41,6 +41,7 @@ int main()
 
     sort(ranges.begin(), ranges.end());
 
+    // merge intervals
     for (ll i = 0; i < n;)
     {
         ll start = ranges[i].first;
@@ -54,25 +55,20 @@ int main()
         i = j;
     }
 
-    // print v
-    //  for(auto &p : v)
-    //      cout << p.first << " " << p.second << endl;
+    // sort querries to use two pointer
+    sort(nums.begin(), nums.end());
 
     ll cnt = 0;
+    ll j = 0;
     for (ll i = 0; i < m; i++)
     {
         ll num = nums[i];
 
-        auto it = lower_bound(v.begin(), v.end(), make_pair(num, LLONG_MIN));
-        it--;
+        while (j < v.size() && num > v[j].second)
+            j++;
 
-        ll start = it->first;
-        ll end = it->second;
-
-        if (start <= num && num <= end)
+        if (j < v.size() && num >= v[j].first && num <= v[j].second)
             cnt++;
-
-        // cout << start << " " << end << " " << num << endl;
     }
 
     cout << cnt << endl;

@@ -34,6 +34,7 @@ int main()
 
     sort(ranges.begin(), ranges.end());
 
+    // merge intervals
     for (ll i = 0; i < n;)
     {
         ll start = ranges[i].first;
@@ -47,6 +48,7 @@ int main()
         i = j;
     }
 
+    // count fresh numbers
     ll m = v.size();
     ll cnt = 0;
     for (ll i = 0; i < m; i++)
